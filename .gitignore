@@ -1,0 +1,29 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Local design-reference exports (Figma dev-mode HTML dumps) — not part of the app
+Cleanstructure.md
+let'sget started.md
+step1of4withreview.md
+step1of4withyoursecuritysystem.md
+PLAN.md
+
+# Local scratch / tooling — not part of the app
+_*.mjs
+scratch_*.mjs
+.qodo/
+
+# Keep only the two curated screenshots referenced by the README
+docs/*.jpg

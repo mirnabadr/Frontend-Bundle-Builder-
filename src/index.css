@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Gilroy is the design's brand typeface. We ship Regular (400), Medium (500),
+  SemiBold (600) and Bold (700), plus the Medium/SemiBold italics. The stack
+  falls back to Poppins / system sans (tailwind.config.js → fontFamily.gilroy)
+  while the .ttf files load (font-display: swap).
+*/
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('./assets/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Poppins fallback is loaded via <link> in index.html (see <head>). */
+
+@layer base {
+  html {
+    @apply bg-white;
+    /* Clip any incidental horizontal overflow so a stray horizontal scrollbar
+       (the grey bar) can never appear at the bottom. `overflow-x: clip` (with
+       overflow-y left at its default) keeps the root from becoming a scroll
+       container, so:
+         - the review panel's `position: sticky` keeps working, and
+         - no scrollbar is *forced* — the vertical scrollbar shows only when
+           needed (it always is, since the content is taller than the viewport).
+       Not forcing a scrollbar avoids the ghost scrollbar track some macOS /
+       Chromium setups leave painted at the bottom until a repaint (which is why
+       the grey bar previously "fixed itself" after switching tabs and back). */
+    overflow-x: clip;
+    /* No rubber-band overscroll, so the viewport edge never exposes the
+       browser's frame/theme colour — that exposed strip is the coloured bar
+       seen at the bottom of a maximised window, which a repaint (switching tabs
+       and back) clears. */
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply min-h-screen font-gilroy text-ink bg-white;
+  }
+}

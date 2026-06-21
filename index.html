@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/cam-v4.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Critical CSS, inlined so it applies on the very first paint. In Vite dev the
+      bundled CSS is injected by JS *after* the entry script runs, so these few
+      rules are what guard the brief gap before it lands:
+        • white background      → no grey FOUC flash (notably in Brave)
+        • overflow-x: clip      → a stray horizontal scrollbar (the grey bar at
+                                  the bottom) can never paint. `clip` keeps the
+                                  root from becoming a scroll container, so the
+                                  sticky review panel still works AND no scrollbar
+                                  is forced.
+        • overscroll-behavior   → no rubber-band overscroll, so the viewport edge
+                                  never exposes the browser's frame/theme colour
+                                  (the coloured strip that "fixes itself" after
+                                  switching tabs).
+        • img max-width         → product PNGs can't overflow before their sizing
+                                  classes load.
+    -->
+    <style>
+      html,
+      body,
+      #root {
+        background-color: #fff;
+      }
+      html {
+        overflow-x: clip;
+        overscroll-behavior: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    <!-- Poppins: temporary fallback for the Gilroy brand face until the .woff2 files are added -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Wyze Bundle Builder</title>
+  </head>
+  <body>
+    <!-- React mounts the entire app into this single root div (Vite entry shell) -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
